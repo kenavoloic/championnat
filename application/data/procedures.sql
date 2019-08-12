@@ -27,11 +27,13 @@ BEGIN
     select sum(sanction) into _sanction from resultats where saison=annee;
     select sum(bonus_offensif) into _bonus from resultats where saison=annee;
     select _sanction + _bonus into _total;
-if _total = 0 then
+    
+    if _total = 0 then
     select saison, club, equipe_id, victoire, match_nul as nul, defaite, bp, bc, difference_de_buts as diff, points from resultats where saison=annee order by points desc, club;
-else 
-select saison, club, equipe_id, victoire, match_nul as nul, defaite, bp, bc, difference_de_buts as diff, bonus_offensif as bonus, sanction, points from resultats where saison=annee order by points desc, club;
-end if;
+    else 
+    select saison, club, equipe_id, victoire, match_nul as nul, defaite, bp, bc, difference_de_buts as diff, bonus_offensif as bonus, sanction, points from resultats where saison=annee order by points desc, club;
+    
+    end if;
 END //
 DELIMITER ;
 

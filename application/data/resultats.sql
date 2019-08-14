@@ -1,6 +1,7 @@
 USE championnat;
 
 DROP TABLE IF EXISTS resultats;
+DROP TRIGGER IF EXISTS D1L1nomEquipeId;
 
 CREATE TABLE resultats (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -22,10 +23,8 @@ foreign key (equipe_id) references clubs(equipe_id) on update cascade on delete 
 foreign key (division_id) references divisions(division_id) on update cascade on delete cascade
 );
 
-DROP TRIGGER IF EXISTS nomEquipeId;
-
 DELIMITER //
-CREATE TRIGGER nomEquipeId BEFORE INSERT ON resultats
+CREATE TRIGGER D1L1nomEquipeId BEFORE INSERT ON resultats
 FOR EACH ROW
     BEGIN
         DECLARE retourEquipeId INT;

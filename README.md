@@ -12,13 +12,13 @@ Format de la commande :
 
 Ainsi pour les fichiers *sql* : 
 
-`mysql < clubs.sql;`
+`mysql -u utilisateur -p <  clubs.sql;`
 
-`mysql < divisions.sql;`
+`mysql -u utilisateur -p <  divisions.sql;`
 
-`mysql < resultats.sql;`
+`mysql -u utilisateur -p <  resultats.sql;`
 
-`mysql < sanctions.sql;`
+`mysql -u utilisateur -p <  sanctions.sql;`
 
-`mysql < procedures.sql;`
+`mysql -u utilisateur -p <  procedures.sql;`
 

@@ -601,7 +601,7 @@ VALUES
 ('1972','Racing Club Strasbourg-Pierrots','1','38','9','12','17','44','62','-18','30'),
 ('1972','Club Sportif Sedan Ardennes','1','38','11','8','19','49','71','-22','30'),
 ('1972','US Valenciennes-Anzin','1','38','9','10','19','37','51','-14','28'),
-('1972','Red Star FC Saint-Ouen','1','38','7','14','17','38','68','-30','28'),
+('1972','Red Star FC Saint-Ouen','1','38','7','14','17','38','58','-30','28'),
 ('1972','AC Ajaccio','1','38','7','9','22','40','89','-49','23');
 
 -- pendant les saisons 1973, 1974, 1975 : instauration d’un bonus offensif.

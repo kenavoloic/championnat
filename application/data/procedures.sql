@@ -36,7 +36,7 @@ BEGIN
     select _sanction + _bonus into _total;
     
     if _total = 0 then
-    select saison, club, equipe_id, victoire, match_nul as nul, defaite, bp, bc, difference_de_buts as diff, points from resultats where saison=annee order by points desc, club;
+    select saison, club, equipe_id, journee, victoire, match_nul as nul, defaite, bp, bc, difference_de_buts as diff, points from resultats where saison=annee order by points desc, club;
     else 
     select saison, club, equipe_id, victoire, match_nul as nul, defaite, bp, bc, difference_de_buts as diff, bonus_offensif as bonus, sanction, points from resultats where saison=annee order by points desc, club;
     
@@ -135,8 +135,42 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE d1l1test(in annee INT)
 BEGIN
-select t1.club from (select club from resultats where saison = annee ) t1
-where t1.club in (select club from resultats where saison = annee - 1);
+-- select t1.club from (select club from resultats where saison = annee ) t1
+-- where t1.club in (select club from resultats where saison = annee - 1);
+
+-- DECLARE titre VARCHAR(9);
+-- set titre = concat(annee,'-', annee + 1);
+
+declare clubs int default 0;
+declare totalbutsMarques int default 0;
+declare totalbutsEncaisses int default 0;
+declare victoires int default 0;
+declare defaites int default 0;
+declare nuls int default 0;
+declare tpoints int default 0;
+
+declare valeur_victoire int default 2;
+declare valeur_nul int default 1;
+declare valeur_defaite int default 0;
+
+-- declare promus int default 0;
+-- declare relegues int default 0;
+-- set promus = call d1l1PromotionNombre(annee);
+-- set relegues = call d1l1RelegationNombre(annee);
+
+if (annee >= 1994) then
+  set valeur_victoire = 3;
+end if;
+
+select count(club) into clubs from resultats where saison=annee;
+select sum(victoire) into victoires from resultats where saison=annee;
+select sum(defaite) into defaites from resultats where saison=annee;
+select sum(match_nul) into nuls from resultats where saison=annee;
+select sum(bp) into totalbutsMarques from resultats where saison=annee;
+select sum(bc) into totalbutsEncaisses from resultats where saison=annee;
+select sum(points) into tpoints from resultats where saison=annee;
+select concat(annee,'-',annee+1) as saison, clubs, victoires, nuls, defaites, totalbutsMarques as bp, totalbutsEncaisses as bc, valeur_victoire as "victoire", valeur_nul as "nul", valeur_defaite as "defaite", tpoints as "total points";
+
 END//
 DELIMITER ;
 
